@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <style>
+
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+thead td {
+  font-weight: bold;
+}
+table td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.about {
+  display: none;
+}
+    </style>
+    <script src='index.js' type=module async></script>
+  </head>
+  <body>
+    <a href='https://github.com/rustwasm/wasm-bindgen/tree/master/benchmarks'>Source code</a>
+
+    <h1>JS / wasm-bindgen comparison</h1>
+
+    <p>
+      These benchmarks are meant to compare WebAssembly costs using raw wasm
+      files and wasm-bindgen itself against the JS equivalents. These
+      microbenchmarks aren't really representative of WebAssembly performance,
+      but can be useful data points about how expensive it is to cross
+      boundaries for example.
+    </p>
+    <p>
+      For all benchmarks higher numbers are better numbers.
+    </p>
+
+    <table id='js-vs-wasm-bindgen'>
+      <thead>
+        <tr>
+          <td>Benchmark</td>
+          <td>wasm-bindgen shim</td>
+          <td>wasm-bindgen interface-types</td>
+          <td>JS</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Count names of nodes on a page
+
+            <a class='about-open' href='#'>(?)</a>
+
+            <p class='about'>
+              This is intended to be a "flavorful DOM benchmark" which
+              exercises DOM functionality from WebAssembly, specifically
+              counting the number of names of each node on a page.
+            </p>
+          </td>
+
+          <td class='bm' id='wbindgen_shim_count_node_names'></td>
+          <td class='bm' id='wbindgen_it_count_node_names'></td>
+          <td class='bm' id='js_count_node_names'></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
