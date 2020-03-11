@@ -9,3 +9,6 @@ wasm-bindgen = { path = "../../../wasm-bindgen" }
 
 [lib]
 crate-type = ['cdylib']
+
+[package.metadata.wasm-pack]
+wasm-opt = false

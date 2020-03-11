@@ -121,6 +121,8 @@ wasms.push(wbindgen_init('./rust/shim/pkg/wasm_bindgen_benchmark_bg.wasm'));
 wasms.push(loadInterfaceTypes());
 Promise.all(wasms)
   .then(() => {
+    console.log(`shim = ${wbindgen_shim_count_node_names(document.body)}`);
+    console.log(`interface = ${wbindgen_it_count_node_names(document.body)}`);
     if (document.readyState === 'loading')
       document.addEventListener('DOMContentLoaded', run);
     else

@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::hash::{Hash, Hasher};
 
 extern crate wasm_bindgen;
 use wasm_bindgen::prelude::*;
@@ -15,10 +16,7 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn count_node_names(element: Node) {
-    let mut buckets = HashMap::new();
-    count_node_names(element, &mut buckets);
-
+pub fn count_node_names(element: Node) -> u32 {
     fn count_node_names(mut element: Node, buckets: &mut HashMap<String, u32>) {
         loop {
             assert!(!element.is_null());
@@ -39,4 +37,15 @@ pub fn count_node_names(element: Node) {
             }
         }
     }
+    let mut buckets = HashMap::new();
+    count_node_names(element, &mut buckets);
+
+    let mut s = std::collections::hash_map::DefaultHasher::new();
+    for a in buckets.keys() {
+        a.hash(&mut s);
+    }
+    for a in buckets.values() {
+        a.hash(&mut s);
+    }
+    s.finish() as u32
 }
